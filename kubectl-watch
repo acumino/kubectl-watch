@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# This script takes any number of arguments for kubectl and watches the output.
+
+# Check if there are no arguments
+if [ $# -eq 0 ]; then
+    echo "Usage: kubectl watch <kubectl_args>"
+    echo "Example: kubectl watch get pods"
+    exit 1
+fi
+
+# Combine all arguments into a single command
+kubectl_args="$@"
+
+# Execute the combined command using watch
+watch -n 1 "kubectl $kubectl_args"
